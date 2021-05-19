@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 import json
-import re
-import sys
 
 with open('./data.json') as f:
     words=json.load(f)
@@ -16,11 +14,18 @@ def thesaurus():
     word = input("Please enter a word\n\n")
     word = word.lower()
 
-    try:
+    if word in words:
         a = (words[word])
-    except KeyError:
-        print(f'Sorry couldnt find an entry for {word}')
-        sys.exit(1)
+    elif word.capitalize() in words:
+        word = word.capitalize()
+        a = (words[word])
+    elif word.upper() in words:
+        word = word.upper()
+        a = (words[word])
+    else:
+        print(f'\nSorry couldnt find an entry for {word}')
+        quit()
+
 
     for count, value in enumerate(a):
         print(f"{count + 1}. {value}\n")
