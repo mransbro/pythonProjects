@@ -11,38 +11,21 @@ parser = argparse.ArgumentParser(
     description=arg_desc
     )
 
-parser.add_argument("-l",
-                    "--length",
-                    default=12,
-                    type=int,
-                    help="Length of the password")
-
-parser.add_argument("-s",
-                    "--symbols",
-                    action="store_true",
-                    help="Exclude symbols from the password")
-
+parser.add_argument("-l", "--length", default=12, type=int, help="Length of the password.")
+parser.add_argument("-s", "--symbols", action="store_true", help="Exclude symbols from the password.")
 args = vars(parser.parse_args())
 
 letters = list(string.ascii_letters)
 nums = [str(num) for num in range(10)]
 symbols = list(string.punctuation)
 
-allchars = {
-    1: letters,
-    2: nums,
-    3: symbols
-}
+allchars = {1: letters, 2: nums, 3: symbols}
 
 if args["symbols"]:
-    choices = [1, 2, 3]
+    typeofchar = [1, 2, 3]
 else:
-    choices = [1, 2]
+    typeofchar = [1, 2]
 
-password = ''
-
-for item in range(int(args["length"])):
-    type = secrets.choice(choices)
-    password += secrets.choice(allchars[secrets.choice(choices)])
+password = ''.join(secrets.choice(allchars[secrets.choice(typeofchar)]) for item in range(int(args["length"])))
 
 print(password)
