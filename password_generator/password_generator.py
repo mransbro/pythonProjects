@@ -16,7 +16,7 @@ parser.add_argument("-s", "--symbols", action="store_true", help="Exclude symbol
 args = vars(parser.parse_args())
 
 letters = list(string.ascii_letters)
-nums = [str(num) for num in range(10)]
+nums = list(string.digits)
 symbols = list(string.punctuation)
 
 allchars = {1: letters, 2: nums, 3: symbols}
@@ -26,6 +26,6 @@ if args["symbols"]:
 else:
     typeofchar = [1, 2]
 
-password = ''.join(secrets.choice(allchars[secrets.choice(typeofchar)]) for item in range(int(args["length"])))
+password = ''.join(secrets.choice(allchars[secrets.choice(typeofchar)]) for item in range(args["length"]))
 
 print(password)
