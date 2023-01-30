@@ -1,11 +1,12 @@
 import rich
 import string
 
+
 def main():
     letters = {}
     for num, letter in enumerate(string.ascii_lowercase):
         letters[num] = letter
-        
+
     while True:
         valid = ["e", "encrypt", "d", "decrypt"]
         purpose = input("Do you want to (e)ncrypt or (d)ecrypt?\n")
@@ -34,7 +35,7 @@ def main():
             continue
         else:
             break
-    
+
     temp_list = [letters[key] for l in list(text) if l.isalpha]
 
 

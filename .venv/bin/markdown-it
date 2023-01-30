@@ -1,4 +1,4 @@
-#!/Users/michael.ansbro/non-work/pythonProjects/.venv/bin/python3
+#!/Users/michael.ansbro/non-work/pythonProjects/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

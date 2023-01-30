@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 import json
-import re
 import sys
 
 with open('./data.json') as f:
-    words=json.load(f)
+    words = json.load(f)
 
 print("""
 
 'Welcome to Michael\'s Thesaurus'
 
 """)
+
 
 def thesaurus():
     word = input("Please enter a word\n\n")

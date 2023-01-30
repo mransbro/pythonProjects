@@ -9,6 +9,7 @@ class Card:
     def __repr__(self):
         return f"{self.value} of {self.suit}"
 
+
 class Deck:
     def __init__(self):
         suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
@@ -39,6 +40,7 @@ class Deck:
     def deal_hand(self, num):
         return self._deal(num)
 
+
 class Player:
     def __init__(self):
         self.hand = []
@@ -67,8 +69,6 @@ class Player:
             else:
                 total += int(card.value)
         return total
-
-
 
 
 deck = Deck()
