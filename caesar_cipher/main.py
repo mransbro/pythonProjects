@@ -3,9 +3,7 @@ import string
 
 
 def main():
-    letters = {}
-    for num, letter in enumerate(string.ascii_lowercase):
-        letters[num] = letter
+    letters = list(string.ascii_lowercase)
 
     while True:
         valid = ["e", "encrypt", "d", "decrypt"]
@@ -18,12 +16,13 @@ def main():
 
     while True:
         try:
-            key = int(input("Please enter the key (0 to 25)?\n"))
+            key = int(input("Please enter the key (1 to 25)?\n"))
         except ValueError:
             print("Sorry i didnt understand that")
+            continue
 
         if key < 0 or key > 25:
-            print("Sorry, your response must be between 0 and 25.\n")
+            print("Sorry, your response must be between 1 and 25.\n")
             continue
         else:
             break
@@ -36,8 +35,28 @@ def main():
         else:
             break
 
-    temp_list = [letters[key] for l in list(text) if l.isalpha]
+    temp_list = list(text)
+    
+    if purpose == "e":
+        for num, char in enumerate(temp_list):
+            if char.isalpha():
+                pos = num + key
+                if pos > 24:
+                    pos = pos - 24
+                temp_list[num] = letters[pos]
+    
+    if purpose == "d":
+        for num, char in enumerate(temp_list):
+            if char.isalpha():
+                pos = num - key
+                if pos > 24:
+                    pos = pos - 24
+                temp_list[num] = letters[pos]
+
+    output = ''.join(temp_list)
+
+    rich.print(f"\n{output}")
 
 
 if __name__ == "__main__":
-    main() 
+    main()
