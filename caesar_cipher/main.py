@@ -6,10 +6,17 @@ def main():
     letters = list(string.ascii_lowercase)
 
     while True:
-        valid = ["e", "encrypt", "d", "decrypt"]
-        purpose = input("Do you want to (e)ncrypt or (d)ecrypt?\n")
-        if purpose.lower() not in valid:
+        try: 
+            answer = str(input("Do you want to (e)ncrypt or (d)ecrypt?\n"))
+        except ValueError:
             print("Sorry i didnt understand that")
+            continue
+        
+        if answer.lower().startswith("e"):
+            mode = "enrypt"
+            continue
+        elif answer.lower().startswith("d"):
+            mode = "decrypt"
             continue
         else:
             break
@@ -36,22 +43,17 @@ def main():
             break
 
     temp_list = list(text)
-    
-    if purpose == "e":
-        for num, char in enumerate(temp_list):
-            if char.isalpha():
-                pos = num + key
-                if pos > 24:
-                    pos = pos - 24
-                temp_list[num] = letters[pos]
-    
-    if purpose == "d":
-        for num, char in enumerate(temp_list):
-            if char.isalpha():
-                pos = num - key
-                if pos > 24:
-                    pos = pos - 24
-                temp_list[num] = letters[pos]
+
+    for num, char in enumerate(temp_list):
+        if char.isalpha():
+            if mode == "encrypt":
+                position = num + key
+            elif mode == "decrypt":
+                position = num - key
+
+            if position >= 25:
+                position = position - 25
+            temp_list[num] = letters[position]
 
     output = ''.join(temp_list)
 
