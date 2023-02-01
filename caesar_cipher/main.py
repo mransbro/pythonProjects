@@ -3,23 +3,23 @@ import string
 
 
 def main():
-    letters = list(string.ascii_lowercase)
+    letters = string.ascii_lowercase
 
     while True:
-        try: 
+        try:
             answer = str(input("Do you want to (e)ncrypt or (d)ecrypt?\n"))
         except ValueError:
             print("Sorry i didnt understand that")
             continue
-        
+
         if answer.lower().startswith("e"):
-            mode = "enrypt"
-            continue
+            mode = "encrypt"
+            break
         elif answer.lower().startswith("d"):
             mode = "decrypt"
-            continue
-        else:
             break
+        else:
+            continue
 
     while True:
         try:
@@ -42,20 +42,22 @@ def main():
         else:
             break
 
-    temp_list = list(text)
+    output = ""
 
-    for num, char in enumerate(temp_list):
+    for char in text:
         if char.isalpha():
+            num = letters.find(char)
             if mode == "encrypt":
-                position = num + key
+                num = num + key
             elif mode == "decrypt":
-                position = num - key
+                num = num - key
 
-            if position >= 25:
-                position = position - 25
-            temp_list[num] = letters[position]
+            if num >= 25:
+                num = num - 25
 
-    output = ''.join(temp_list)
+            output = output + letters[num]
+        else:
+            output = output + char
 
     rich.print(f"\n{output}")
 
