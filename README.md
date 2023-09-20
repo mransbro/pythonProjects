@@ -7,3 +7,4 @@ Collection of small Python apps.
 * [Password Generator](password_generator/README.md)
 * [Position Size Calculator](position-size-calculator/README.md)
 * [Thesaurus](thesaurus/README.md)
+* [Duplicate Files](duplicate_files/README.md)
